@@ -33,7 +33,20 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 
         public Product Purchase(int id)
         {
-            throw new NotImplementedException();
+            Product selectedProduct = Products[id];
+            
+            //check if the moneypool is enough to buy product
+            if(selectedProduct.Price > moneyPool)
+            {
+                throw new ArgumentException("The price of the product is high");
+            }
+            else
+            {
+                //remaining moneypol
+                moneyPool = moneyPool - selectedProduct.Price;
+            }
+
+            return selectedProduct;
         }
 
         public Product[] ShowAll()
