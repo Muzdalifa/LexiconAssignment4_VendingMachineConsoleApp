@@ -16,7 +16,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         void InsertMoney(int amount);
 
         //returns money left in appropriate amount of change(Dictionary).
-        int EndTransaction();
+        Dictionary<int,int> EndTransaction();
 
 
     }
