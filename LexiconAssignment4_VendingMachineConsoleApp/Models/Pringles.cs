@@ -6,14 +6,21 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 {
     class Pringles : Product
     {
-        public override void Examine()
+        public Pringles() : base()
         {
-            throw new NotImplementedException();
+            Id = 3;
+            Name = "Pringles";
+            Price = 50;
+        }
+        public override string Examine()
+        {
+            return $"{Id}\t{Name}\t\t{Price}kr"; 
         }
 
-        public override void USe()
+        public override string Use()
         {
-            throw new NotImplementedException();
+            return "You have got this product\nUse: It is a snack. Can be eated!";
         }
+
     }
 }

@@ -10,13 +10,13 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         Product Purchase(int id);
 
         //show all products.
-        Product[] ShowAll();
+        void ShowAll();
 
         //add money to the pool.
         void InsertMoney(int amount);
 
         //returns money left in appropriate amount of change(Dictionary).
-        Dictionary<int,int> EndTransaction();
+        Dictionary<int,int> EndTransaction(int moneyToPay, int productId);
 
 
     }

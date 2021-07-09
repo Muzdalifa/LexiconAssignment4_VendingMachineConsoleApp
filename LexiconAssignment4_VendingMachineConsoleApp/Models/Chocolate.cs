@@ -6,14 +6,22 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 {
     class Chocolate : Product
     {
-        public override void Examine()
+        public Chocolate()
         {
-            throw new NotImplementedException();
+            Id = 1;
+            Name = "Chocolate";
+            Price = 50;
         }
 
-        public override void USe()
+        public override string Examine()
         {
-            throw new NotImplementedException();
+            return $"{Id}\t{Name}\t\t{Price}Kr"; ;
         }
+
+        public override string Use()
+        {
+            return "Use: It is a snack. Can be eated! But don't eat too many.. They are not good for your teeth. ";
+        }
+
     }
 }

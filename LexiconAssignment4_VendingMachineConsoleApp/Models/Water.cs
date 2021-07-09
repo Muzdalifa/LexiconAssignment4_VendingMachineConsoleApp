@@ -6,14 +6,20 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 {
     class Water : Product
     {
-        public override void Examine()
+        public Water()
         {
-            throw new NotImplementedException();
+            Id = 2;
+            Name = "Water";
+            Price = 100;
+        }
+        public override string Examine()
+        {
+            return $"{Id}\t{Name}\t\t\t{Price}kr\n"; 
         }
 
-        public override void USe()
+        public override string Use()
         {
-            throw new NotImplementedException();
+            return "Use: It is a drink. Drink it when you are thirsty!\n";
         }
     }
 }
