@@ -1,6 +1,7 @@
 ﻿using LexiconAssignment4_VendingMachineConsoleApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace LexiconAssignment4_VendingMachineConsoleApp
 {
@@ -9,10 +10,10 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
         public static VendingMachine vendingMashine = new VendingMachine();
         static void Main(string[] args)
         {
-            StartVendingMachiner();
+            StartVendingMachine();
         }
 
-        public static void StartVendingMachiner()
+        public static void StartVendingMachine()
         {
             ConsoleKey userInput;
 
@@ -33,7 +34,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
                 }                
 
                 //3 : Select product(s)
-                productId = SelectProduct();
+                productId = GetNumber("Select a product to purchase.\nEnter its Id : ");
 
                 //4 : Purchase a product
                 Product purchasedProduct = vendingMashine.Purchase(productId);
@@ -49,7 +50,8 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
 
                 if(userInput != ConsoleKey.N)
                 {
-                    PressAnyKeyToContinue();
+                    Thread.Sleep(800);
+                    //PressAnyKeyToContinue();
                 }                
 
             } while (userInput != ConsoleKey.N);
@@ -80,35 +82,28 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
                 }
             }
 
-            Console.Write("Enter money : ");
-            return  Convert.ToInt32(Console.ReadLine());
+            return GetNumber("Enter money : ");
         }
 
-        //select a product
-        public static int SelectProduct()
+        //Function to get id from the user
+        public static int GetNumber(string words)
         {
-            Console.WriteLine("Select a product to purchase.");
-            
-            Console.Write("Enter its Id : ");
+            //set flag to restrict the user to enter only numbers
+            bool flag = false;
+            int id;
+            do
+            {
+                Console.Write(words);
+                flag = Int32.TryParse(Console.ReadLine(), out id);
+                if (!flag)
+                {
+                    Console.WriteLine("The number you enterd is not valid! Please enter valid number.");
+                }
+            } while (!flag);
 
-            int productId = Convert.ToInt32(Console.ReadLine());
+            return id;
 
-            return productId;
         }
-
-        //public static int ProductInfo()
-        //{
-        //    string userInput;
-        //    Product product = vendingMashine.Purchase(productId);
-
-        //    Console.WriteLine($"Product information :\n{product.Examine()}");
-        //    Console.WriteLine();
-        //    Console.WriteLine($"Product Use :\n{product.Use()}");
-
-
-
-        //    
-        //}
 
         public static void DisplayChange(Dictionary<int, int> change)
         {
@@ -124,11 +119,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
 
                 foreach (KeyValuePair<int, int> pair in change)
                 {
-                    if (pair.Value != 0)
-                    {
-                        Console.WriteLine($"{pair.Key}x{pair.Value}");
-                    }
-
+                    Console.WriteLine($"{pair.Key}x{pair.Value}");
                 }
             }
             else

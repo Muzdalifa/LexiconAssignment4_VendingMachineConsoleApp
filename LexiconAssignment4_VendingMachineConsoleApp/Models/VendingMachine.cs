@@ -4,14 +4,14 @@ using System.Text;
 
 namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 {
-    class VendingMachine : IVending
+    public class VendingMachine : IVending
     {
         //fields
         readonly int[] moneyDenominations = new int[] { 1, 5, 10, 20, 50, 100, 500, 1000 };
 
-        int moneyPool = 0;
+        int moneyPool;
 
-        public int MoneyPool { get { return moneyPool; } }
+        public int MoneyPool { get { return moneyPool;} }
 
         public Product[] Products = new Product[] { new Chocolate(), new Water(), new Pringles() };
 
@@ -48,6 +48,11 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         {
             Product selectedProduct = Array.Find(Products, product => product.Id == id);
 
+            if(selectedProduct == null)
+            {
+                throw new ArgumentException("Product is not found!");
+            }
+
             //check if the moneypool is enough to buy product
             if (selectedProduct.Price > moneyPool)
             {
@@ -62,7 +67,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
             return selectedProduct;
         }
 
-        //step 4: returns money left in appropriate amount of change(Dictionary).
+        //step 4: returns money left in appropriate amount of change(Dictionary), given poductId.
         public Dictionary<int, int> EndTransaction(int id)
         {
             //Find selected product
@@ -74,7 +79,13 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 
             for (int i = moneyDenominations.Length - 1; i >= 0; i--)
             {
-                changeDict.Add(moneyDenominations[i], moneyPool / moneyDenominations[i]);
+                //Check if change returned is not zero
+                int change = moneyPool / moneyDenominations[i];
+
+                if (change != 0)
+                {
+                    changeDict.Add(moneyDenominations[i], change);
+                }
 
                 moneyPool = moneyPool % moneyDenominations[i];
             }

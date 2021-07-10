@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 {
-    class Chocolate : Product
+    public class Chocolate : Product
     {
         public Chocolate()
         {
@@ -15,7 +15,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 
         public override string Examine()
         {
-            return $"{Id}\t{Name}\t\t{Price}Kr"; ;
+            return $"{Id}\t{Name}\t\t{Price}kr"; 
         }
 
         public override string Use()

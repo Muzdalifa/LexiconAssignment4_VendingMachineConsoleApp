@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 {
-    class Water : Product
+    public class Water : Product
     {
         public Water()
         {

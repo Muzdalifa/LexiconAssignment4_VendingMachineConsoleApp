@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 {
-    class Pringles : Product
+    public class Pringles : Product
     {
         public Pringles() : base()
         {
