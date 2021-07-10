@@ -34,18 +34,18 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
                 }                
 
                 //3 : Select product(s)
-                productId = GetNumber("Select a product to purchase.\nEnter its Id : ");
+                productId = GetNumber("Select a product to purchase.\n\nEnter its Id : ");
 
                 //4 : Purchase a product
                 Product purchasedProduct = vendingMashine.Purchase(productId);
 
                 //5 : Give product Info 
-                Console.WriteLine($"Product information :\n{purchasedProduct.Examine()}");
+                Console.WriteLine($"Product information :\n{purchasedProduct.Examine()} \n");
 
                 //6 : Use
-                Console.WriteLine($"Product Use :\n{purchasedProduct.Use()}");                
+                Console.WriteLine($"Product Use :\n{purchasedProduct.Use()} \n");                
 
-                Console.WriteLine("Do you want to buy again? Y/N");
+                Console.WriteLine("Do you want to buy again? Y/N \n");
                 userInput = Console.ReadKey(true).Key;
 
                 if(userInput != ConsoleKey.N)
@@ -81,6 +81,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
                     Console.Write($"{vendingMashine.MoneyDenominations[i]} ,");
                 }
             }
+            Console.WriteLine();
 
             return GetNumber("Enter money : ");
         }
@@ -93,14 +94,15 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
             int id;
             do
             {
-                Console.Write(words);
+                Console.Write($"{words}");
                 flag = Int32.TryParse(Console.ReadLine(), out id);
                 if (!flag)
                 {
-                    Console.WriteLine("The number you enterd is not valid! Please enter valid number.");
+                    Console.WriteLine("The number you enterd is not valid! Please enter valid number.\n");
                 }
             } while (!flag);
 
+            Console.WriteLine();
             return id;
 
         }
@@ -121,10 +123,14 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
                 {
                     Console.WriteLine($"{pair.Key}x{pair.Value}");
                 }
+
+                Console.WriteLine();
+
+                Console.WriteLine("----------Thank you for buying from us. Welcome again!----------\n\n");
             }
             else
             {
-                Console.WriteLine("Thank you for buying from us. Welcome again!");
+                Console.WriteLine("----------Thank you for buying from us. Welcome again!----------\n\n");
             }
         }
 

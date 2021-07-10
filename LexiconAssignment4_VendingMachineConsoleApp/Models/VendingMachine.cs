@@ -27,15 +27,17 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
             {
                 Console.WriteLine(product.Examine());
             }
+            Console.WriteLine();
         }
 
         //step 2: Insert money to the VM
-        public void InsertMoney(int amount)
+        public void InsertMoney(double amount)
         {
             //Array.Find by default returns 0 if it doesn't found 
             if (Array.Find(moneyDenominations, money => money == amount) != 0)
             {
-                moneyPool += amount;
+
+                moneyPool += Convert.ToInt32(amount);
             }
             else
             {

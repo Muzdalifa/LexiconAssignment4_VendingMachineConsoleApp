@@ -13,7 +13,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         void ShowAll();
 
         //add money to the pool.
-        void InsertMoney(int amount);
+        void InsertMoney(double amount);
 
         //returns money left in appropriate amount of change(Dictionary).
         Dictionary<int,int> EndTransaction(int productId);

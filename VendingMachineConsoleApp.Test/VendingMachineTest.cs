@@ -55,7 +55,8 @@ namespace VendingMachineConsoleApp.Test
         [InlineData(0)]
         [InlineData(300)]
         [InlineData(2000)]
-        //[InlineData(10.1)]  
+        [InlineData(200.0)]
+        [InlineData(-200)]
         public void InsertMoneyThrowExceptionWithIncorrectMoneyDenomination(int moneyToPay)
         {
             //Arrange;
