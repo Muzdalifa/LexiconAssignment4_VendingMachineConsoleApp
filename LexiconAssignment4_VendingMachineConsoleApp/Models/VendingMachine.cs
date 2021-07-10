@@ -9,7 +9,9 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         //fields
         readonly int[] moneyDenominations = new int[] { 1, 5, 10, 20, 50, 100, 500, 1000 };
 
-        int moneyPool;
+        int moneyPool = 0;
+
+        public int MoneyPool { get { return moneyPool; } }
 
         public Product[] Products = new Product[] { new Chocolate(), new Water(), new Pringles() };
 

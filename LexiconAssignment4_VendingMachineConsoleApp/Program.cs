@@ -9,29 +9,55 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
         public static VendingMachine vendingMashine = new VendingMachine();
         static void Main(string[] args)
         {
-            Console.WriteLine("----------Welcom to Muzda's Vending mashine----------");            
-            
-            //step 1: Show all product in the vending machine
-            vendingMashine.ShowAll();
+            StartVendingMachiner();
+        }
 
-            //step 2: Insert money from money denomination
-            vendingMashine.InsertMoney(InsertMoneyToVM());
+        public static void StartVendingMachiner()
+        {
+            ConsoleKey userInput;
 
-            //3 : Select product(s)
-            int productId = SelectProduct();
+            int productId;
 
-            //4 : Purchase a product
-            Product purchasedProduct = vendingMashine.Purchase(productId);
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("----------Welcom to Muzda's Vending mashine----------");
 
-            //5 : Give product Info 
-            Console.WriteLine($"Product information :\n{purchasedProduct.Examine()}");
+                //step 1: Show all product in the vending machine
+                vendingMashine.ShowAll();
 
-            //6 : Use
-            Console.WriteLine($"Product Use :\n{purchasedProduct.Use()}");
+                if (vendingMashine.MoneyPool < 5)
+                {
+                    //step 2: Insert money from money denomination
+                    vendingMashine.InsertMoney(InsertMoneyToVM());
+                }                
+
+                //3 : Select product(s)
+                productId = SelectProduct();
+
+                //4 : Purchase a product
+                Product purchasedProduct = vendingMashine.Purchase(productId);
+
+                //5 : Give product Info 
+                Console.WriteLine($"Product information :\n{purchasedProduct.Examine()}");
+
+                //6 : Use
+                Console.WriteLine($"Product Use :\n{purchasedProduct.Use()}");                
+
+                Console.WriteLine("Do you want to buy again? Y/N");
+                userInput = Console.ReadKey(true).Key;
+
+                if(userInput != ConsoleKey.N)
+                {
+                    PressAnyKeyToContinue();
+                }                
+
+            } while (userInput != ConsoleKey.N);
 
             //step 7: Return change            
             Dictionary<int, int> change = vendingMashine.EndTransaction(productId);
             DisplayChange(change);
+
         }
 
         public static int InsertMoneyToVM()
@@ -81,8 +107,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
 
 
 
-        //    Console.WriteLine("Do you want to buy again? Y/N");
-        //    userInput = Console.ReadLine();
+        //    
         //}
 
         public static void DisplayChange(Dictionary<int, int> change)
@@ -110,6 +135,12 @@ namespace LexiconAssignment4_VendingMachineConsoleApp
             {
                 Console.WriteLine("Thank you for buying from us. Welcome again!");
             }
+        }
+
+        public static void PressAnyKeyToContinue()
+        {
+            Console.WriteLine("Press any key to buy again!");
+            Console.ReadKey(true);
         }
     }
 }

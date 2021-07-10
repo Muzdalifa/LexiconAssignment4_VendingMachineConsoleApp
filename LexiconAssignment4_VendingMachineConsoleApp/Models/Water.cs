@@ -19,7 +19,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 
         public override string Use()
         {
-            return "It is a drink. Drink it when you are thirsty!\n";
+            return "It is a drink. You can use it when you are thirsty!\n";
         }
     }
 }
