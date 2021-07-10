@@ -10,7 +10,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         {
             Id = 1;
             Name = "Chocolate";
-            Price = 50;
+            Price = 5;
         }
 
         public override string Examine()
@@ -20,7 +20,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 
         public override string Use()
         {
-            return "Use: It is a snack. Can be eated! But don't eat too many.. They are not good for your teeth. ";
+            return "It is a snack. Can be eated! But don't eat too many.. They are not good for your teeth. ";
         }
 
     }

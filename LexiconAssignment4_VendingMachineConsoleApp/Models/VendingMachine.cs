@@ -17,42 +17,31 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         public int[] MoneyDenominations { get { return moneyDenominations; } }
 
         //methods:
-        //returns money left in appropriate amount of change(Dictionary).
-        public Dictionary<int, int> EndTransaction(int money, int id)
+
+        //step 1: show all product
+        public void ShowAll()
         {
-            //Find selected product
-            Product selectedProduct = Array.Find(Products, product => product.Id == id);
-
-            //Calcculate change
-            moneyPool = money - selectedProduct.Price;
-
-            Dictionary<int, int> change = new Dictionary<int, int>();
-
-            for (int i = moneyDenominations.Length - 1; i >= 0; i--)
+            foreach (Product product in Products)
             {
-                change.Add(moneyDenominations[i], moneyPool / moneyDenominations[i]);
-
-                moneyPool = moneyPool % moneyDenominations[i];
+                Console.WriteLine(product.Examine());
             }
-
-            return change;
         }
-
-
 
         //step 2: Insert money to the VM
         public void InsertMoney(int amount)
         {
+            //Array.Find by default returns 0 if it doesn't found 
             if (Array.Find(moneyDenominations, money => money == amount) != 0)
             {
                 moneyPool += amount;
             }
             else
             {
-                Console.WriteLine("The money you enterd is not among the denominations!");
+                throw new ArgumentException("The money you enterd is not among the denominations!");
             }
         }
 
+        //step 3: purchase a product
         public Product Purchase(int id)
         {
             Product selectedProduct = Array.Find(Products, product => product.Id == id);
@@ -68,19 +57,27 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
                 moneyPool = moneyPool - selectedProduct.Price;
             }
 
-            Console.WriteLine(selectedProduct.Examine());
-            Console.WriteLine(selectedProduct.Use());
-
             return selectedProduct;
         }
 
-        //step 1: show all product
-        public void ShowAll()
+        //step 4: returns money left in appropriate amount of change(Dictionary).
+        public Dictionary<int, int> EndTransaction(int id)
         {
-            foreach (Product product in Products)
+            //Find selected product
+            Product selectedProduct = Array.Find(Products, product => product.Id == id);
+
+            //Calcculate change
+
+            Dictionary<int, int> changeDict = new Dictionary<int, int>();
+
+            for (int i = moneyDenominations.Length - 1; i >= 0; i--)
             {
-                Console.WriteLine(product.Examine());
+                changeDict.Add(moneyDenominations[i], moneyPool / moneyDenominations[i]);
+
+                moneyPool = moneyPool % moneyDenominations[i];
             }
+
+            return changeDict;
         }
 
     }

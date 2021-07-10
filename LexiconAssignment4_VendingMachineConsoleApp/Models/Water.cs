@@ -14,12 +14,12 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
         }
         public override string Examine()
         {
-            return $"{Id}\t{Name}\t\t\t{Price}kr\n"; 
+            return $"{Id}\t{Name}\t\t\t{Price}kr"; 
         }
 
         public override string Use()
         {
-            return "Use: It is a drink. Drink it when you are thirsty!\n";
+            return "It is a drink. Drink it when you are thirsty!\n";
         }
     }
 }

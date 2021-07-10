@@ -19,7 +19,7 @@ namespace LexiconAssignment4_VendingMachineConsoleApp.Models
 
         public override string Use()
         {
-            return "You have got this product\nUse: It is a snack. Can be eated!";
+            return "You have got this product\n It is a snack. Can be eated!";
         }
 
     }
